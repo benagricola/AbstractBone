@@ -2,16 +2,16 @@ define(
 	[
 		 'text!template/app/left.html'
 	],
-	function(template_left) 
+	function(template) 
 	{
 	
-		var AppLeftView = Backbone.View.extend(
+		return Backbone.View.extend(
 		{
 			el: '#left',
 			
-			_template: template_left,
+			_template: template,
 			
-			init: function()
+			initialize: function()
 			{
 				// Create left app view
 				console.log('AppLeftView');
@@ -25,7 +25,5 @@ define(
 				console.log('AppLeftView RENDER');
 			}
 		});
-		
-		return AppLeftView;
 	}
 );

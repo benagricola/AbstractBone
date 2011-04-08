@@ -1,27 +1,44 @@
-define(['view/app/view_app'],
-	function(view_app) 
+define(
+	[
+	 'view/app/view_app',
+	 'controller/login'
+	],
+	function(view_app,controller_login) 
 	{
 		
-		var AppController = Backbone.Controller.extend(
+		return Backbone.Controller.extend(
 		{
+			_ctl: {},
+			
 			routes: {
-				"": "index"
+				"": "index",
+				"login": "login"
 			},
 			
 			_appView: new view_app(),
 			
-			init: function()
+			initialize: function()
 			{
+				this._appView.render();
 			},
 			
 			index: function()
 			{
-				this._appView.render();
+				
+			},
+			
+			login: function()
+			{
+				console.log('AppView.login');
+				if(_.isUndefined(this._ctl.login))
+				{
+					this._ctl.login = new controller_login();
+				}
+				
+				this._ctl.login.show();
 			}
 			
 		});
-		
-		
-		return AppController;
+
 	}
 );

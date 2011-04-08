@@ -7,7 +7,7 @@ define(
 	function(view_left,view_right,template_app) 
 	{
 	
-		var AppView = Backbone.View.extend(
+		return Backbone.View.extend(
 		{
 			el: '#app',
 			
@@ -19,7 +19,7 @@ define(
 				right: new view_right()
 			},
 			
-			init: function()
+			initialize: function()
 			{
 				// Create main app view
 				console.log('AppView');
@@ -33,7 +33,5 @@ define(
 				this._views.right.render();
 			}
 		});
-		
-		return AppView;
 	}
 );

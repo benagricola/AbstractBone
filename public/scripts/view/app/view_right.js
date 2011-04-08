@@ -2,15 +2,15 @@ define(
 	[
 		 'text!template/app/right.html'
 	],
-	function(template_right) 
+	function(template) 
 	{
 	
-		var AppRightView = Backbone.View.extend(
+		return Backbone.View.extend(
 		{
 			el: '#right',
-			_template: template_right,
+			_template: template,
 			
-			init: function()
+			initialize: function()
 			{
 				// Create right app view
 				console.log('AppRightView');
@@ -24,7 +24,6 @@ define(
 				console.log('AppRightView RENDER');
 			}
 		});
-		
-		return AppRightView;
+
 	}
 );
