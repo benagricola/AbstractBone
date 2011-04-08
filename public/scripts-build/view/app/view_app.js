@@ -1,0 +1,1 @@
+define(["view/app/view_left","view/app/view_right","text!template/app/app.html"],function(a,b,c){return Backbone.View.extend({el:"#app",_template:c,_views:{left:new a,right:new b},initialize:function(){console.log("AppView");console.log(this)},render:function(){$(this.el).html(this._template);this._views.left.render();this._views.right.render()}})});

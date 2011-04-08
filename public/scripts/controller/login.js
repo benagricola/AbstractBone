@@ -1,6 +1,6 @@
 define(
 	[
-	 'view/login/view_login',
+	 'view/login/view_login'
 	],
 	function(view) 
 	{

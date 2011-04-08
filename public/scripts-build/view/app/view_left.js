@@ -1,0 +1,1 @@
+define(["text!template/app/left.html"],function(a){return Backbone.View.extend({el:"#left",_template:a,initialize:function(){console.log("AppLeftView");console.log(this)},render:function(){$(this.el).html(this._template);console.log("AppLeftView RENDER")}})});
