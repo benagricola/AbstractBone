@@ -2,7 +2,12 @@
     appDir: ".",
     baseUrl: ".",
     dir: "../scripts-build",
-    optimize: "closure",
+    optimize: "uglify",
+    closure: {
+        CompilerOptions: {},
+        CompilationLevel: 'SIMPLE_OPTIMIZATIONS',
+        loggingLevel: 'INFO'
+    },
     modules: [
         {
             name: "main"

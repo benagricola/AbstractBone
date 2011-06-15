@@ -1,3 +1,70 @@
-<div id="left"></div>
-<div id="main"></div>
-<div id="right"></div>
+<script id="appTemplate" type="text/x-jquery-tmpl">		
+
+		<div id="header">
+			<div id="titleBar" class="ui-state-default">
+				<a id="navigateBack" href="javascript:;" title="${strings.back}">
+					<span class="ui-icon ui-icon-arrowthick-1-w"></span>
+				</a>
+				<a id="navigateForward" href="javascript:;" title="${strings.forward}">
+					<span class="ui-icon ui-icon-arrowthick-1-e"></span>	
+				</a>
+				<a id="navigateHome" href="javascript:;" title="${strings.home_page_title}" class="spaced">
+					<span class="ui-icon ui-icon-home"></span>
+					<span>${strings.home_page}</span>
+				</a>
+			</div>
+
+			<!-- Allow user to access help section -->
+			<div id="userHelp" class="ui-state-default">
+				<a target="_blank" href="/resources/HotelIndigo-Help.pdf" title="${strings.help_title}">
+					<span class="ui-icon ui-icon-info"></span>
+					<span>${strings.help}</span>
+				</a>
+			</div>
+			
+			<!-- Allow user to log out -->
+			<div id="userLogout" class="ui-state-default">
+				<a href="javascript:;" title="${strings.logout_title}">
+					<span class="ui-icon ui-icon-circle-minus"></span>
+					<span>${strings.logout}</span>
+				</a>
+			</div>
+			
+			<!-- Allow admin user to browse admin panel -->
+			<div id="userAdmin" class="ui-state-default">
+				<a href="javascript:;" title="${strings.admin_title}">
+					<span class="ui-icon ui-icon-gear"></span>
+					<span>${strings.admin}</span>
+				</a>
+			</div>
+
+			<div id="currentlyEditing" class="ui-state-default">
+				<a href="javascript:;" title="${strings.workspace_title}">
+					<span class="ui-icon ui-icon-suitcase"></span>
+					<span id="currentlyEditingWorkspacePrefix">${strings.workspace_prefix}</span><span id="currentlyEditingWorkspace">{{if templateOptions.workspace}}${templateOptions.workspace.get('name')}{{/if}}</span>
+				</a>
+			</div>
+
+			<br style="clear:both" />
+		</div>
+
+
+
+		<!-- LEFTBAR -->
+		<div id="leftContainer">
+			
+		</div>
+
+		<!-- CONTENT -->
+		<div class="content" id="content">
+			
+		</div>
+
+
+		<!-- RIGHTBAR -->
+		<div id="rightContainer">
+			
+		</div>
+
+</script>	
+		
