@@ -1,0 +1,29 @@
+==============
+ Installation
+==============
+
+ Simply add the jab.py file to /usr/bin or add a symlink to it
+
+
+
+================
+ Usage Examples
+================
+
+ jab create controller search
+
+This adds a new controller to the controllers directory and adds 
+search folders to the view and template directories. It then adds
+an index view and index template to them.
+
+
+ jab create view search missing
+
+This adds a view to the view/search folder named "missing.js". It 
+then adds a template to the template/search directory with the
+same name.
+
+
+ jab create template search foo
+
+This adds a template to template/search named "foo.html"
