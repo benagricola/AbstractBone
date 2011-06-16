@@ -2,7 +2,6 @@
 import sys
 import os
 import io
-from _pyio import open
  
  
 # Check that we are in an abstract bone environment
@@ -22,7 +21,7 @@ controllerTemplate = "define( \n\
     [ \n\
      'view/[[name]]/view_[[name]]' \n\
     ], \n\
-    function(view) \n\
+    function(View) \n\
     {\n\
         \n\
         return Backbone.Controller.extend(\n\
@@ -32,7 +31,7 @@ controllerTemplate = "define( \n\
                 \"[[name]]\": \"index\"\n\
             },\n\
             \n\
-            _view: new view(),\n\
+            _view: new View(),\n\
             \n\
             initialize: function()\n\
             {\n\
@@ -42,12 +41,50 @@ controllerTemplate = "define( \n\
             index: function()\n\
             {\n\
                 this._view.render();\n\
-            },\n\
+            }\n\
             \n\
         });\n\
 \n\
     }\n\
 );"
+
+viewTemplate = "define(\n\
+    [\n\
+         'text!template/[[controller]]/[[name]].html'\n\
+    ],\n\
+    function(template) \n\
+    {\n\
+    \n\
+        return Backbone.View.extend(\n\
+        {\n\
+            el: '#YOUR_ELEMENT_ID',\n\
+            _template: template,\n\
+            \n\
+            events: {\n\
+                // Events here\n\
+            },\n\
+            \n\
+            initialize: function()\n\
+            {\n\
+                \n\
+            },\n\
+        \n\
+            render: function()\n\
+            { \n\
+                $(this.el).html(this._template);\n\
+                \n\
+                this.delegateEvents();\n\
+            }\n\
+            \n\
+            \n\
+        });\n\
+\n\
+    }\n\
+);"
+
+templateTemplate = "<script id=\"[[controller]]_[[name]]Template\" type=\"text/x-jquery-tmpl\">\n\
+    <h2>[[controller]] [[name]]</h2>\n\
+</script>"
     
     
 # Function definitions for the different create methods ------------
@@ -59,11 +96,37 @@ def addController(name):
         file = io.open(fileName, "wb")
         file.write(controllerTemplate.replace('[[name]]', name))
         file.close()
+        addView('index', name)
+        addTemplate('index', name)
     except:
         print "ERROR", sys.exc_info()
         
+      
+def addView(name, controller):
+    try:
+        print "trying to add view", name, "to", controller
+        fileName = os.getcwd() + "/view/" + str.lower(controller) + "/" + str.lower(name) + ".js"
+        os.mkdir(os.getcwd() + "/view/" + str.lower(controller), 0755)
+        file = io.open(fileName, "wb")
+        fileContent = controllerTemplate.replace('[[controller]]', controller)
+        file.write(fileContent.replace('[[name]]', name))
+        file.close()
+    except:
+        print "ERROR", sys.exc_info()
         
-        
+
+def addTemplate(name, controller):
+    try:
+        print "trying to add template", name, "to", controller
+        fileName = os.getcwd() + "/template/" + str.lower(controller) + "/" + str.lower(name) + ".html"
+        os.mkdir(os.getcwd() + "/template/" + str.lower(controller), 0755)
+        file = io.open(fileName, "wb")
+        fileContent = templateTemplate.replace('[[controller]]', controller)
+        file.write(fileContent.replace('[[name]]', name))
+        file.close()
+    except:
+        print "ERROR", sys.exc_info()
+                
         
 # MAIN FLOW ---------------------------------------------------------
 # Get the first arg command
