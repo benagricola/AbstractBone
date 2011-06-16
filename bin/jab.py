@@ -106,11 +106,13 @@ def addView(name, controller):
     try:
         print "trying to add view", name, "to", controller
         fileName = os.getcwd() + "/view/" + str.lower(controller) + "/" + str.lower(name) + ".js"
-        os.mkdir(os.getcwd() + "/view/" + str.lower(controller), 0755)
+        if os.path.isdir(os.getcwd() + "/view/" + str.lower(controller)) == False:
+            os.mkdir(os.getcwd() + "/view/" + str.lower(controller), 0755)
         file = io.open(fileName, "wb")
-        fileContent = controllerTemplate.replace('[[controller]]', controller)
+        fileContent = viewTemplate.replace('[[controller]]', controller)
         file.write(fileContent.replace('[[name]]', name))
         file.close()
+        addTemplate(name, controller)
     except:
         print "ERROR", sys.exc_info()
         
@@ -119,7 +121,8 @@ def addTemplate(name, controller):
     try:
         print "trying to add template", name, "to", controller
         fileName = os.getcwd() + "/template/" + str.lower(controller) + "/" + str.lower(name) + ".html"
-        os.mkdir(os.getcwd() + "/template/" + str.lower(controller), 0755)
+        if os.path.isdir(os.getcwd() + "/template/" + str.lower(controller)) == False:
+            os.mkdir(os.getcwd() + "/template/" + str.lower(controller), 0755)
         file = io.open(fileName, "wb")
         fileContent = templateTemplate.replace('[[controller]]', controller)
         file.write(fileContent.replace('[[name]]', name))
@@ -149,6 +152,14 @@ if theCommand == 'create':
     if theType == "controller":
         theName = sys.argv[3]
         addController(theName)
+    elif theType == "view":
+        theController = sys.argv[3]
+        theName = sys.argv[4]
+        addView(theName, theController)
+    elif theType == "template":
+        theController = sys.argv[3]
+        theName = sys.argv[4]
+        addTemplate(theName, theController)
     else:
         print theType, "not yet implemented"
 
