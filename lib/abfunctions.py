@@ -2,13 +2,13 @@ import os
 import io
 import sys
 
-libDir = os.getenv('ABSTRACT_BONE_DIR', False) + '/lib'
+libDir = os.path.join(os.getenv('ABSTRACT_BONE_DIR', False), 'lib')
 
 def isAbstractBoneEnv():
     
-    if (os.path.isdir(os.getcwd() + '/controller') == False or
-        os.path.isdir(os.getcwd() + '/template') == False or
-        os.path.isdir(os.getcwd() + '/template') == False):
+    if (os.path.isdir(os.path.join(os.getcwd(), 'scripts', 'controller')) == False or
+        os.path.isdir(os.path.join(os.getcwd(), 'scripts', 'view')) == False or
+        os.path.isdir(os.path.join(os.getcwd(), 'scripts', 'template')) == False):
         return False
        
     return True

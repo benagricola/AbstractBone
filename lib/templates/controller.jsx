@@ -1,6 +1,6 @@
 define(
     [
-     'view/[[name]]/view_[[name]]'
+     'view/[[name]]/view_index'
     ],
     function(View)
     {
