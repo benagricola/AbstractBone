@@ -22,8 +22,8 @@ def addController(name):
         print "ERROR:", sys.exc_info()
         sys.exit()
         
-    addView('index', name)
-    addTemplate('index', name)
+    addView(name, name)
+    addTemplate(name, name)
         
         
         
@@ -32,7 +32,7 @@ def addView(name, controller):
 
     print "Trying to add view", name, "to", controller
     viewTemplate = abfunctions.getTemplate('view')
-    fileName = os.path.abspath(os.getcwd() + "/scripts/view/" + str.lower(controller) + "/" + str.lower(name) + ".js")
+    fileName = os.path.abspath(os.getcwd() + "/scripts/view/" + str.lower(controller) + "/view_" + str.lower(name) + ".js")
     
     try:
         if os.path.isdir(os.getcwd() + "/scripts/view/" + str.lower(controller)) == False:
