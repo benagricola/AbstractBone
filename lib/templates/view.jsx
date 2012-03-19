@@ -1,6 +1,6 @@
 define(
     [
-         'text!template/[[controller]]/[[name]].html'
+         'text!template/[[router]]/[[name]].html'
     ],
     function(template) 
     {
@@ -8,7 +8,6 @@ define(
         return Backbone.View.extend(
         {
             el: '#YOUR_ELEMENT_ID',
-            _template: template,
             
             events: {
                 // Events here
@@ -21,8 +20,7 @@ define(
         
             render: function()
             { 
-                $(this.el).html($(this._template).tmpl());
-                
+                $(this.el).html($(template).tmpl());
                 this.delegateEvents();
             }
             

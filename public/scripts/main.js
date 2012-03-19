@@ -1,21 +1,19 @@
 require(
 	[	
+		'routermanifest',
 		'order!common/jquery', 
 		'order!common/jquery-ui', 
 		'order!common/jquery-tmpl', 
 		'order!common/underscore', 
 		'order!common/backbone'
-	], function()
-	{
-		require(
-			[
-			 	'controller/app'
-			], function(controller_app)
+		
+	], function(routerManifest)
+	{ console.log('MANIFEST-',routerManifest);
+		require(routerManifest, function()	
 			{
-				console.log('All JS Loaded!');
-				
-				window.app = new controller_app();
-				console.log(Backbone);
+				for(var i=0; i<arguments.length; i++) {
+					new arguments[i]();
+				}
 				Backbone.history.start();
 			}
 		);

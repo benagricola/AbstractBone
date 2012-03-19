@@ -5,14 +5,12 @@ define(
     function(View)
     {
        
-        return Backbone.Controller.extend(
+        return Backbone.Router.extend(
         {
            
             routes: {
                 "[[name]]": "index"
             },
-           
-            _view: new View(),
            
             initialize: function()
             {

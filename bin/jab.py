@@ -32,7 +32,7 @@ if theCommand == 'create':
     try:
         theType = sys.argv[2]
     except:
-        print "Create usage:\n create controller [name]\n create view [controllerName] [viewName]\n create template [controllerName] [templateName]"
+        print "Create usage:\n create router [name]\n create view [routerName] [viewName]\n create template [routerName] [templateName]"
         sys.exit()
         
     if theType != "project":
@@ -40,17 +40,17 @@ if theCommand == 'create':
             print "ERROR: This does not look like an abstractBone environment, please cd to the public directory of your project."
             sys.exit()
 
-    if theType == "controller":
+    if theType == "router":
         theName = sys.argv[3]
-        project.addController(theName)
+        project.addrouter(theName)
     elif theType == "view":
-        theController = sys.argv[3]
+        therouter = sys.argv[3]
         theName = sys.argv[4]
-        project.addView(theName, theController)
+        project.addView(theName, therouter)
     elif theType == "template":
-        theController = sys.argv[3]
+        therouter = sys.argv[3]
         theName = sys.argv[4]
-        project.addTemplate(theName, theController)
+        project.addTemplate(theName, therouter)
     elif theType == "project":
         theName = sys.argv[3]
         project.createIn(os.path.join(os.getcwd(), theName))

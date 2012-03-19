@@ -8,15 +8,15 @@ abDir = os.getenv('ABSTRACT_BONE_DIR', False)
 
 # Function definitions for the different create methods ------------
 # @todo: Add some validation to make sure we can't add junky file names
-def addController(name):
+def addRouter(name):
     
-    print "Trying to add controller", name
-    controllerTemplate = abfunctions.getTemplate('controller')
-    fileName = os.path.abspath(os.getcwd() + "/scripts/controller/" + str.lower(name) + ".js")
+    print "Trying to add router", name
+    routerTemplate = abfunctions.getTemplate('router')
+    fileName = os.path.abspath(os.getcwd() + "/scripts/router/" + str.lower(name) + ".js")
     
     try:
         file = io.open(fileName, "wb")
-        file.write(controllerTemplate.replace('[[name]]', name))
+        file.write(routerTemplate.replace('[[name]]', name))
         file.close()
     except:
         print "ERROR:", sys.exc_info()
@@ -28,17 +28,17 @@ def addController(name):
         
         
       
-def addView(name, controller):
+def addView(name, router):
 
-    print "Trying to add view", name, "to", controller
+    print "Trying to add view", name, "to", router
     viewTemplate = abfunctions.getTemplate('view')
-    fileName = os.path.abspath(os.getcwd() + "/scripts/view/" + str.lower(controller) + "/view_" + str.lower(name) + ".js")
+    fileName = os.path.abspath(os.getcwd() + "/scripts/view/" + str.lower(router) + "/view_" + str.lower(name) + ".js")
     
     try:
-        if os.path.isdir(os.getcwd() + "/scripts/view/" + str.lower(controller)) == False:
-            os.mkdir(os.getcwd() + "/scripts/view/" + str.lower(controller), 0755)
+        if os.path.isdir(os.getcwd() + "/scripts/view/" + str.lower(router)) == False:
+            os.mkdir(os.getcwd() + "/scripts/view/" + str.lower(router), 0755)
         file = io.open(fileName, "wb")
-        fileContent = viewTemplate.replace('[[controller]]', controller)
+        fileContent = viewTemplate.replace('[[router]]', router)
         file.write(fileContent.replace('[[name]]', name))
         file.close()
     except:
@@ -48,17 +48,17 @@ def addView(name, controller):
     
     
 
-def addTemplate(name, controller):
+def addTemplate(name, router):
 
-    print "Trying to add template", name, "to", controller
+    print "Trying to add template", name, "to", router
     templateTemplate = abfunctions.getTemplate('template')
-    fileName = os.path.abspath(os.getcwd() + "/scripts/template/" + str.lower(controller) + "/" + str.lower(name) + ".html")
+    fileName = os.path.abspath(os.getcwd() + "/scripts/template/" + str.lower(router) + "/" + str.lower(name) + ".html")
     
     try:
-        if os.path.isdir(os.getcwd() + "/scripts/template/" + str.lower(controller)) == False:
-            os.mkdir(os.getcwd() + "/scripts/template/" + str.lower(controller), 0755)
+        if os.path.isdir(os.getcwd() + "/scripts/template/" + str.lower(router)) == False:
+            os.mkdir(os.getcwd() + "/scripts/template/" + str.lower(router), 0755)
         file = io.open(fileName, "wb")
-        fileContent = templateTemplate.replace('[[controller]]', controller)
+        fileContent = templateTemplate.replace('[[router]]', router)
         file.write(fileContent.replace('[[name]]', name))
         file.close()
     except:
