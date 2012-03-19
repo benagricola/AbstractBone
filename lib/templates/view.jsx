@@ -21,7 +21,7 @@ define(
         
             render: function()
             { 
-                $(this.el).html(this._template);
+                $(this.el).html($(this._template).tmpl());
                 
                 this.delegateEvents();
             }
