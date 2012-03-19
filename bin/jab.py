@@ -42,7 +42,7 @@ if theCommand == 'create':
 
     if theType == "router":
         theName = sys.argv[3]
-        project.addrouter(theName)
+        project.addRouter(theName)
     elif theType == "view":
         therouter = sys.argv[3]
         theName = sys.argv[4]

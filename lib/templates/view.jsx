@@ -7,7 +7,6 @@ define(
     
         return Backbone.View.extend(
         {
-            el: '#YOUR_ELEMENT_ID',
             
             events: {
                 // Events here

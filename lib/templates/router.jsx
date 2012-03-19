@@ -19,7 +19,10 @@ define(
            
             index: function()
             {
-                this._view.render();
+            	[[name]]View = new View({
+            		el: $("#app")
+            	});
+                [[name]]View.render();
             }
            
         });

@@ -22,6 +22,7 @@ def addRouter(name):
         print "ERROR:", sys.exc_info()
         sys.exit()
         
+    generateRouterManifest()
     addView(name, name)
     addTemplate(name, name)
         
@@ -80,3 +81,22 @@ def createIn(path):
         sys.exit()
         
     print "Created project in", path
+
+
+
+def generateRouterManifest():
+    
+    print "Generating new router manifest"
+    manifestTemplate = abfunctions.getTemplate('manifest')
+    files = os.listdir(os.getcwd() + "/scripts/router")
+    routerJs = ''
+    
+    for router in files:
+        routerJs = routerJs + "'router/" + os.path.splitext(router)[0] + "', "
+        
+    routerJs = routerJs[:-2]
+    fileContent = manifestTemplate.replace('[[files]]', routerJs)
+    file = io.open(os.getcwd() + "/scripts/routermanifest.js", "wb")
+    file.write(fileContent)
+    file.close()
+    print "Router manifest generated"

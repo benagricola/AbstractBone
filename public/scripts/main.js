@@ -8,7 +8,7 @@ require(
 		'order!common/backbone'
 		
 	], function(routerManifest)
-	{ console.log('MANIFEST-',routerManifest);
+	{
 		require(routerManifest, function()	
 			{
 				for(var i=0; i<arguments.length; i++) {
